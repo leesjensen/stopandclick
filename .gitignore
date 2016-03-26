@@ -5,3 +5,6 @@ node_modules
 typings
 app/*.js.map
 app/*.js
+
+# Mac
+.DS_Store
