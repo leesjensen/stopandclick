@@ -18,8 +18,8 @@ var ENVIRONS: Environment[] = [
     selector: 'my-app',
   template:`
     <div class="environmentContainer">
-      <span class="environment" *ngFor="#environment of environments" [class.selected]="environment === selectedEnvironment" (click)="onPlay(environment)" (mouseenter)="onSelect(environment)">
-        <img src="{{environment.image}}" />
+      <span *ngFor="#environment of environments" (click)="onPlay(environment)" (mouseenter)="onSelect(environment)">
+        <img class="environment" [class.selected]="environment === selectedEnvironment" src="{{environment.image}}" />
       </span>
     </div>
     <div *ngIf="selectedEnvironment">
