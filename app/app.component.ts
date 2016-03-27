@@ -19,11 +19,11 @@ var ENVIRONS: Environment[] = [
   template:`
     <div class="environmentContainer">
       <span *ngFor="#environment of environments" (click)="onPlay(environment)" (mouseenter)="onSelect(environment)">
-        <img class="environment" [class.selected]="environment === selectedEnvironment" src="{{environment.image}}" />
+        <img class="environment" [class.selected]="environment === selectedEnvironment" [class.notSelected]="environment != selectedEnvironment" src="{{environment.image}}" />
       </span>
     </div>
     <div *ngIf="selectedEnvironment">
-      <div class="txtCenter">In the mood for {{selectedEnvironment.title}}</div>
+      <div class="moodText">In the mood for {{selectedEnvironment.title}}</div>
     </div>
   `})
 
