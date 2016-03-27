@@ -17,22 +17,20 @@ var ENVIRONS: Environment[] = [
 @Component({
     selector: 'my-app',
   template:`
-    <h1>{{title}}</h1>
-    <h2>Environments</h2>
-    <div>
-      <span class="environment" *ngFor="#environment of environments" [class.selected]="environment === selectedEnvironment" (click)="onSelect(environment)">
+    <div class="environmentContainer">
+      <span class="environment" *ngFor="#environment of environments" [class.selected]="environment === selectedEnvironment" (click)="onPlay(environment)" (mouseenter)="onSelect(environment)">
         <img src="{{environment.image}}" />
       </span>
     </div>
     <div *ngIf="selectedEnvironment">
-      <h2>{{selectedEnvironment.title}} selected</h2>
+      <div class="txtCenter">In the mood for {{selectedEnvironment.title}}</div>
     </div>
   `})
 
 export class AppComponent { 
-	title = "Stop and Click";
 	environments = ENVIRONS;
-	selectedEnvironment: Environment = ENVIRONS[0];
+	selectedEnvironment: Environment = ENVIRONS[2];
 
 	onSelect(environment: Environment) { this.selectedEnvironment = environment; }
+  onPlay(enviornment:Environment) {}
 }
