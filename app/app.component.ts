@@ -7,11 +7,11 @@ export class Environment {
 }
 
 var ENVIRONS: Environment[] = [ 
-	{'title':'rain', 'image':'img/rain.jpg', 'audio':'audio/night.mp3'}, 
-	{'title':'ocean', 'image':'img/ocean.jpg', 'audio':'audio/night.mp3'}, 
-  {'title':'desert', 'image':'img/desert.jpg', 'audio':'audio/night.mp3'}, 
-  {'title':'night', 'image':'img/night.jpg', 'audio':'audio/night.mp3'}, 
-	{'title':'forest', 'image':'img/forest.jpg', 'audio':'audio/forest.wav'}
+	{'title':'rain', 'image':'img/rain.jpg', 'audio':'https://dl.dropbox.com/s/62d3k6qufcimq60/rainandthunder.mp3'}, 
+	{'title':'ocean', 'image':'img/ocean.jpg', 'audio':'https://dl.dropbox.com/s/ayt0ete6wiiqoto/ocean.mp3'}, 
+  {'title':'desert', 'image':'img/desert.jpg', 'audio':'https://dl.dropbox.com/s/up8uhf7swo8pywo/desert.mp3'}, 
+  {'title':'night', 'image':'img/night.jpg', 'audio':'https://dl.dropbox.com/s/dvhzv1qf7fs8dny/birds.mp3'}, 
+	{'title':'forest', 'image':'img/forest.jpg', 'audio':'https://dl.dropbox.com/s/716e05pn3klgsxl/forest.mp3'}
 ];
 
 
@@ -23,10 +23,10 @@ var ENVIRONS: Environment[] = [
         <img class="environment" [class.selected]="environment === selectedEnvironment" [class.notSelected]="environment != selectedEnvironment" src="{{environment.image}}" />
       </span>
     </div>
-    <div *ngIf="selectedEnvironment">
+    <div>
       <div class="moodText">In the mood for {{selectedEnvironment.title}}</div>
-      <audio id="audioPlayer" autoplay="autoplay" controls="controls">  
-       <source src="{{selectedEnvironment.audio}}" />  
+      <audio id="audioPlayer" autoplay loop>  
+       <source src=""  type="audio/mpeg"/>  
       </audio> 
     </div>
   `})
@@ -34,15 +34,14 @@ var ENVIRONS: Environment[] = [
 export class AppComponent { 
 	environments = ENVIRONS;
 	selectedEnvironment: Environment = ENVIRONS[2];
+  playingAudio = false;
 
 	onSelect(environment: Environment) { this.selectedEnvironment = environment; }
   onPlay(enviornment:Environment) {
-        var audio = document.getElementById('audioPlayer');
+    var audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.src = this.selectedEnvironment.audio;
 
-        var source = document.getElementById('oggSource');
-        source.src = this.selectedEnvironment.audio;
-
-        audio.load(); //call this to just preload the audio without playing
-        audio.play(); //call this to play the song right away
+    audioPlayer.play(); //call this to play the song right away
+    playingAudio = true;
   }
 }
