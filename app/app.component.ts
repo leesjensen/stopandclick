@@ -18,6 +18,7 @@ var ENVIRONS: Environment[] = [
 @Component({
     selector: 'my-app',
   template:`
+  clicklee
     <div class="environmentContainer">
       <span *ngFor="#environment of environments" (click)="onPlay(environment)" (mouseenter)="onSelect(environment)">
         <img class="environment" [class.selected]="environment === selectedEnvironment" [class.notSelected]="environment != selectedEnvironment" src="{{environment.image}}" />
@@ -36,12 +37,15 @@ export class AppComponent {
 	selectedEnvironment: Environment = ENVIRONS[2];
   playingAudio = false;
 
-	onSelect(environment: Environment) { this.selectedEnvironment = environment; }
+	onSelect(environment: Environment) { 
+    this.selectedEnvironment = environment; 
+  }
+
   onPlay(enviornment:Environment) {
-    var audioPlayer = document.getElementById('audioPlayer');
+    var audioPlayer = <HTMLAudioElement> document.getElementById('audioPlayer');
     audioPlayer.src = this.selectedEnvironment.audio;
 
     audioPlayer.play(); //call this to play the song right away
-    playingAudio = true;
+    this.playingAudio = true;
   }
 }
