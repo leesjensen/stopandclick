@@ -18,7 +18,6 @@ var ENVIRONS: Environment[] = [
 @Component({
     selector: 'my-app',
   template:`
-  clicklee
     <div class="environmentContainer">
       <span *ngFor="#environment of environments" (click)="onPlay(environment)" (mouseenter)="onSelect(environment)">
         <img class="environment" [class.selected]="environment === selectedEnvironment" [class.notSelected]="environment != selectedEnvironment" src="{{environment.image}}" />
